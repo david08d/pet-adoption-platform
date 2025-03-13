@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { PetsModule } from './pets/pets.module';
+import { DonationsModule } from './donations/donations.module';
+import { SheltersModule } from './shelters/shelters.module';
 import databaseConfig from './config/database.config';
 
 @Module({
@@ -32,6 +34,8 @@ import databaseConfig from './config/database.config';
     }),
     AuthModule,
     PetsModule,
+    DonationsModule,
+    SheltersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

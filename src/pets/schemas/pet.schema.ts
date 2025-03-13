@@ -14,10 +14,10 @@ export class Pet {
   @Prop({ required: true })
   breed: string;
 
-  @Prop()
+  @Prop({ required: true })
   age: number;
 
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
   @Prop({ default: false })
@@ -26,7 +26,13 @@ export class Pet {
   @Prop({ type: [String] })
   images: string[];
 
-  @Prop({ default: Date.now })
+  @Prop({ type: String, ref: 'User' })
+  adoptedBy: string;
+
+  @Prop({ type: Date })
+  adoptionDate: Date;
+
+  @Prop({ type: Date, default: Date.now })
   createdAt: Date;
 }
 

@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Pet, PetDocument } from './schemas/pet.schema';
 import { CreatePetDto } from './dto/create-pet.dto';
+import { UpdatePetDto } from './dto/update-pet.dto';
 
 @Injectable()
 export class PetsService {
@@ -25,7 +26,7 @@ export class PetsService {
     return pet;
   }
 
-  async update(id: string, updatePetDto: Partial<CreatePetDto>): Promise<Pet> {
+  async update(id: string, updatePetDto: UpdatePetDto): Promise<Pet> {
     const updatedPet = await this.petModel
       .findByIdAndUpdate(id, updatePetDto, { new: true })
       .exec();
@@ -41,5 +42,19 @@ export class PetsService {
       throw new NotFoundException(`Pet with ID ${id} not found`);
     }
     return deletedPet;
+  }
+
+  async adopt(id: string, userId: string): Promise<Pet> {
+    const pet = await this.petModel.findById(id).exec();
+    if (!pet) {
+      throw new NotFoundException(`Pet with ID ${id} not found`);
+    }
+    if (pet.isAdopted) {
+      throw new Error('This pet is already adopted');
+    }
+    pet.isAdopted = true;
+    pet.adoptedBy = userId;
+    pet.adoptionDate = new Date();
+    return pet.save();
   }
 } 

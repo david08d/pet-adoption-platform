@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional, IsBoolean, IsArray } from 'class-validator';
+import { IsString, IsNumber, IsBoolean, IsOptional, IsArray } from 'class-validator';
 
 export class CreatePetDto {
   @IsString()
@@ -11,12 +11,10 @@ export class CreatePetDto {
   breed: string;
 
   @IsNumber()
-  @IsOptional()
-  age?: number;
+  age: number;
 
   @IsString()
-  @IsOptional()
-  description?: string;
+  description: string;
 
   @IsBoolean()
   @IsOptional()
