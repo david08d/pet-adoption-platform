@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тварини для адопції</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Тварини для адопції</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="about.html">Про нас</a></li>
+                <li><a href="donate_page.html">Донати</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Доступні для адопції тварини</h2>
+
+        <!-- Форма для фільтрації -->
+        <section class="filter">
+            <h3>Фільтрувати тварин</h3>
+            <form id="filter-form">
+                <label for="species">Вид:</label>
+                <select id="species">
+                    <option value="">Вибрати</option>
+                    <option value="Кіт">Кіт</option>
+                    <option value="Собака">Собака</option>
+                    <option value="Папуга">Папуга</option>
+                    <option value="Хом'як">Папуга</option>
+                    <option value="Змія">Папуга</option>
+                    <option value="Павук">Папуга</option>
+                </select>
+
+                <label for="gender">Стать:</label>
+                <select id="gender">
+                    <option value="">Вибрати</option>
+                    <option value="Чоловічий">Чоловічий</option>
+                    <option value="Жіночий">Жіночий</option>
+                </select>
+
+                <label for="size">Розмір:</label>
+                <select id="size">
+                    <option value="">Вибрати</option>
+                    <option value="Малий">Малий</option>
+                    <option value="Середній">Середній</option>
+                    <option value="Великий">Великий</option>
+                </select>
+
+                <label for="age">Вік (роки):</label>
+                <input type="number" id="age" min="0" max="20">
+
+                <button type="submit">Застосувати фільтри</button>
+            </form>
+        </section>
+
+        <!-- Список доступних тварин -->
+        <section class="animals-list">
+            <h3>Наші тварини</h3>
+            <ul id="animals-list">
+                <!-- Приклад тварини -->
+                <li class="animal" data-species="Кіт" data-gender="Жіночий" data-size="Малий" data-age="3">
+                    <p><strong>Мурка</strong> (Кіт)</p>
+                    <p>Стать: Жіночий</p>
+                    <p>Розмір: Малий</p>
+                    <p>Вік: 3 роки</p>
+                    <button>Заявити на адопцію</button>
+                </li>
+                <li class="animal" data-species="Собака" data-gender="Чоловічий" data-size="Великий" data-age="5">
+                    <p><strong>Тузя</strong> (Собака)</p>
+                    <p>Стать: Чоловічий</p>
+                    <p>Розмір: Великий</p>
+                    <p>Вік: 5 років</p>
+                    <button>Заявити на адопцію</button>
+                </li>
+                <li class="animal" data-species="Кіт" data-gender="Чоловічий" data-size="Середній" data-age="2">
+                    <p><strong>Рижик</strong> (Кіт)</p>
+                    <p>Стать: Чоловічий</p>
+                    <p>Розмір: Середній</p>
+                    <p>Вік: 2 роки</p>
+                    <button>Заявити на адопцію</button>
+                </li>
+                <li class="animal" data-species="Папуга" data-gender="Жіночий" data-size="Малий" data-age="1">
+                    <p><strong>Ківі</strong> (Папуга)</p>
+                    <p>Стать: Чоловічий</p>
+                    <p>Розмір: Малий</p>
+                    <p>Вік: 1 рік</p>
+                    <button>Заявити на адопцію</button>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        // Функція для фільтрації тварин
+        document.getElementById('filter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const species = document.getElementById('species').value.toLowerCase();
+            const gender = document.getElementById('gender').value.toLowerCase();
+            const size = document.getElementById('size').value.toLowerCase();
+            const age = document.getElementById('age').value;
+            
+            const animals = document.querySelectorAll('.animal');
+
+            animals.forEach(function(animal) {
+                const animalSpecies = animal.getAttribute('data-species').toLowerCase();
+                const animalGender = animal.getAttribute('data-gender').toLowerCase();
+                const animalSize = animal.getAttribute('data-size').toLowerCase();
+                const animalAge = animal.getAttribute('data-age');
+
+                // Перевіряємо, чи тварина відповідає фільтрам
+                if ((species === '' || animalSpecies.includes(species)) &&
+                    (gender === '' || animalGender.includes(gender)) &&
+                    (size === '' || animalSize.includes(size)) &&
+                    (age === '' || animalAge <= age)) {
+                    animal.style.display = 'block';
+                } else {
+                    animal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

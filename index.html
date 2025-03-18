@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Мій сайт</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="about.html">Про нас</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Ласкаво просимо!</h2>
+        <p>Це головна сторінка.</p>
+        
+        <!-- Авторизація та реєстрація -->
+        <div class="auth-container">
+            <div id="login-form">
+                <h2>Вхід</h2>
+                <form>
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" required>
+                    
+                    <label for="login-password">Пароль:</label>
+                    <input type="password" id="login-password" required>
+                    
+                    <button type="submit">Увійти</button>
+                </form>
+                <p>Немає аккаунта? <a href="#" onclick="toggleForms()">Зареєструватися</a></p>
+            </div>
+
+            <div id="register-form">
+                <h2>Реєстрація</h2>
+                <form>
+                    <label for="register-name">Ім'я:</label>
+                    <input type="text" id="register-name" required>
+                    
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" required>
+                    
+                    <label for="register-password">Пароль:</label>
+                    <input type="password" id="register-password" required>
+                    
+                    <button type="submit">Зареєструватися</button>
+                </form>
+                <p>Вже маєте аккаунт? <a href="#" onclick="toggleForms()">Увійти</a></p>
+            </div>
+        </div>
+
+        <!-- Список донатів -->
+        <section class="donations">
+            <h2>Список донатів</h2>
+            <ul id="donation-list">
+                <li>Іван - 500 грн</li>
+                <li>Марія - 300 грн</li>
+                <li>Олексій - 1000 грн</li>
+            </ul>
+        </section>
+
+        <!-- Запити на адопцію -->
+        <section class="adoption-requests">
+            <h2>Запити на адопцію</h2>
+            <ul id="adoption-list">
+                <li>
+                    Олена хоче всиновити кота Мурчика
+                    <button onclick="markAvailable('Мурчик')">Позначити доступним</button>
+                </li>
+                <li>
+                    Дмитро цікавиться собакою Барсиком
+                    <button onclick="markAvailable('Барсик')">Позначити доступним</button>
+                </li>
+                <li>
+                    Анна шукає рудого кота
+                    <button onclick="markAvailable('рудий кіт')">Позначити доступним</button>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        function toggleForms() {
+            let loginForm = document.getElementById("login-form");
+            let registerForm = document.getElementById("register-form");
+            
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                registerForm.style.display = "none";
+            } else {
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+            }
+        }
+
+        function markAvailable(animalName) {
+            // Отримуємо список запитів на адопцію
+            const adoptionList = document.getElementById('adoption-list');
+            const items = adoptionList.getElementsByTagName('li');
+
+            // Перевіряємо кожен елемент на наявність тварини, яку позначають як доступну
+            for (let item of items) {
+                if (item.textContent.includes(animalName)) {
+                    // Додаємо повідомлення про доступність тварини
+                    item.innerHTML += ' - <strong>Тварина доступна для адопції</strong>';
+                    break;
+                }
+            }
+        }
+    </script>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

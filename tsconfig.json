@@ -1,12 +1,13 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
+  "compilerOptions": { "strict": true,
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
+    "target": "ES5",
+    "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -16,8 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false,
-    "jsx": "react-jsx",
-    "moduleResolution": "node"
+    "noFallthroughCasesInSwitch": false
   }
 }

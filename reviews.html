@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відгуки про сайт</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Відгуки про сайт</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="about.html">Про нас</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+                <li><a href="reviews.html">Відгуки</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Форма для написання відгуку -->
+        <section class="reviews-form">
+            <h2>Ваш відгук</h2>
+            <p>Поділіться своєю думкою про наш сайт!</p>
+            <form id="review-form">
+                <label for="review-name">Ваше ім'я:</label>
+                <input type="text" id="review-name" required>
+
+                <label for="review-email">Email:</label>
+                <input type="email" id="review-email" required>
+
+                <label for="review-message">Відгук:</label>
+                <textarea id="review-message" required></textarea>
+
+                <button type="submit">Відправити відгук</button>
+            </form>
+        </section>
+
+        <!-- Список відгуків -->
+        <section class="reviews-list">
+            <h2>Відгуки користувачів</h2>
+            <div id="reviews-container">
+                <!-- Відгуки користувачів з'являтимуться тут -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Обробка форми для відгуків
+        document.getElementById('review-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('review-name').value;
+            const email = document.getElementById('review-email').value;
+            const message = document.getElementById('review-message').value;
+
+            if (name && email && message) {
+                // Створюємо новий елемент відгуку
+                const review = document.createElement('div');
+                review.classList.add('review');
+                
+                review.innerHTML = `
+                    <h3>${name}</h3>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Відгук:</strong> ${message}</p>
+                `;
+                
+                // Додаємо відгук до списку
+                document.getElementById('reviews-container').appendChild(review);
+
+                // Очистити форму після відправки
+                document.getElementById('review-form').reset();
+
+                alert("Ваш відгук успішно додано!");
+            } else {
+                alert("Будь ласка, заповніть усі поля.");
+            }
+        });
+    </script>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

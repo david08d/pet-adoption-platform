@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детальна інформація про тварину</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Деталі про тварину</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="adoption_page.html">Тварини для адопції</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Детальна інформація про тварину -->
+        <section class="animal-details">
+            <h2>Мурчик</h2>
+            <p><strong>Вид:</strong> Кіт</p>
+            <p><strong>Стать:</strong> Жіночий</p>
+            <p><strong>Розмір:</strong> Малий</p>
+            <p><strong>Вік:</strong> 3 роки</p>
+            <p><strong>Опис:</strong> Мурка — маленька та дуже мила кішечка, яка обожнює проводити час з людьми. Вона чекає на свою нову родину і буде чудовим компаньйоном.</p>
+            <img src="images/murchik.jpg" alt="Мурка" width="300">
+
+            <!-- Форма для подачі запиту на адопцію -->
+            <section class="adoption-request">
+                <h3>Запит на адопцію</h3>
+                <form id="adoption-form">
+                    <label for="your-name">Ваше ім'я:</label>
+                    <input type="text" id="your-name" required>
+
+                    <label for="your-email">Email:</label>
+                    <input type="email" id="your-email" required>
+
+                    <label for="your-message">Чому ви хочете всиновити цю тварину?</label>
+                    <textarea id="your-message" required></textarea>
+
+                    <button type="submit">Подати запит</button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <script>
+        // Обробка форми для подачі запиту на адопцію
+        document.getElementById('adoption-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('your-name').value;
+            const email = document.getElementById('your-email').value;
+            const message = document.getElementById('your-message').value;
+
+            if (name && email && message) {
+                alert("Ваш запит на адопцію успішно подано! Ми зв'яжемось з вами найближчим часом.");
+                
+                // Очистити форму після відправки
+                document.getElementById('adoption-form').reset();
+            } else {
+                alert("Будь ласка, заповніть усі поля.");
+            }
+        });
+    </script>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
